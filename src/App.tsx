@@ -15,7 +15,7 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            <Route path="/config" element={<MainPage />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/output" element={<Output />} />
           </Routes>
         </BrowserRouter>
