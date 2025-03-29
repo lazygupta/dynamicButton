@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { log } from 'console';
 
 type ActionType =
   | 'alert'
@@ -76,9 +77,13 @@ const executeAction = async (
       }
       break;
 
-    case 'closeWindow':
-      window.close();
-      break;
+      case 'closeWindow':
+        if (window.opener) {
+          window.close();
+        } else {
+          alert('Please close it manually.');
+        }
+        break;
 
     case 'promptAndShow':
       const response = prompt(action.config?.message || 'Enter your input:');
@@ -135,8 +140,6 @@ export default function Output() {
 
   const handleClick = async () => {
     if (!config) return;
-
-
     for (const action of config.actions) {
       await executeAction(action, buttonRef, setOutputText, setOutputImage, setIsDisabled);
     }
