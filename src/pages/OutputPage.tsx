@@ -126,7 +126,6 @@ export default function Output() {
 
 
   useEffect(() => {
-    if(!outputText)
     localStorage.setItem('OutputText', outputText);
   }, [outputText]);
 
