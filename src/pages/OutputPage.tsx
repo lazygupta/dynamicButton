@@ -124,6 +124,8 @@ export default function Output() {
     }
   }, []);
 
+
+  // reload ke baad bh it will work
   useEffect(() => {
     localStorage.setItem('OutputText', outputText);
   }, [outputText]);
