@@ -252,7 +252,7 @@ export default function MainPage() {
                                         })
                                       }
                                       placeholder="Value"
-                                      className="w-full"
+                                      className="w-32"
                                     />
                                   )}
                                 </div>

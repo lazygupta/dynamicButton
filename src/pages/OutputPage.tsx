@@ -125,8 +125,8 @@ export default function Output() {
   }, []);
 
 
-  // reload ke baad bh it will work
   useEffect(() => {
+    if(!outputText)
     localStorage.setItem('OutputText', outputText);
   }, [outputText]);
 
@@ -137,8 +137,6 @@ export default function Output() {
   const handleClick = async () => {
     if (!config) return;
 
-    setOutputText('');
-    setOutputImage('');
 
     for (const action of config.actions) {
       await executeAction(action, buttonRef, setOutputText, setOutputImage, setIsDisabled);
