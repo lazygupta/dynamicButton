@@ -101,7 +101,7 @@ const executeAction = async (
   }
 };
 
-export default function WorkflowOutput() {
+export default function Output() {
   const [config, setConfig] = useState<WorkflowConfig | null>(null);
   const [outputText, setOutputText] = useState<string>('');
   const [outputImage, setOutputImage] = useState<string>('');
