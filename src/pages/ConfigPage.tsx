@@ -237,7 +237,7 @@ export default function MainPage() {
                                       })
                                     }
                                     placeholder="Key"
-                                    className="w-full"
+                                    className="w-32"
                                   />
 
                                   {action.type === 'setLocalStorage' && (
