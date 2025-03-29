@@ -37,6 +37,7 @@ const executeAction = async (
   action: WorkflowAction,
   buttonRef: React.RefObject<HTMLButtonElement | null>,
   setOutputText: (text: string) => void,
+  setResponseText: (text: string) => void,
   setOutputImage: (url: string) => void,
   setIsDisabled: (disabled: boolean) => void
 ) => {
@@ -46,7 +47,7 @@ const executeAction = async (
       break;
 
     case 'showText':
-      setOutputText(action.config?.message || '');
+      setResponseText(action.config?.message || '');
       break;
 
     case 'showImage':
@@ -108,6 +109,7 @@ const executeAction = async (
 export default function Output() {
   const [config, setConfig] = useState<WorkflowConfig | null>(null);
   const [outputText, setOutputText] = useState<string>('');
+  const [responseText, setResponseText] = useState<string>('');
   const [outputImage, setOutputImage] = useState<string>('');
   const [isDisabled, setIsDisabled] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -140,7 +142,7 @@ export default function Output() {
   const handleClick = async () => {
     if (!config) return;
     for (const action of config.actions) {
-      await executeAction(action, buttonRef, setOutputText, setOutputImage, setIsDisabled);
+      await executeAction(action, buttonRef, setOutputText,setResponseText, setOutputImage, setIsDisabled);
     }
   };
 
@@ -166,6 +168,7 @@ export default function Output() {
           </Button>
 
           {outputText && <div className="text-lg font-medium">{outputText}</div>}
+          {responseText && <div className="text-lg font-medium">{responseText}</div>}
 
           {outputImage && (
             <img
