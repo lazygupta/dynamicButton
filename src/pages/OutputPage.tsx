@@ -77,13 +77,13 @@ const executeAction = async (
       }
       break;
 
-      case 'closeWindow':
-        if (window.opener) {
-          window.close();
-        } else {
-          alert('Please close it manually.');
-        }
-        break;
+    case 'closeWindow':
+      if (window.opener) {
+        window.close();
+      } else {
+        alert('Please close it manually.');
+      }
+      break;
 
     case 'promptAndShow':
       const response = prompt(action.config?.message || 'Enter your input:');
@@ -142,7 +142,8 @@ export default function Output() {
   const handleClick = async () => {
     if (!config) return;
     for (const action of config.actions) {
-      await executeAction(action, buttonRef, setOutputText,setResponseText, setOutputImage, setIsDisabled);
+      await executeAction(action, buttonRef, setOutputText, setResponseText, setOutputImage, setIsDisabled);
+      await new Promise((resolve) => setTimeout(resolve, 200)); // to make it order wise
     }
   };
 
